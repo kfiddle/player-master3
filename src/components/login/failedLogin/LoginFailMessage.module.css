@@ -1,0 +1,26 @@
+.outerContainer {
+  position: fixed;
+  margin: 0.5rem 4rem;
+  padding: 1rem 1rem 1rem 4rem;
+  display: flex;
+  width: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: linear-gradient(to left, transparent, #eccbcb, rgb(90, 85, 85));
+  font-weight: 900;
+  z-index: 1;
+  cursor: pointer;
+  transform: translate(20rem, 15rem);
+  animation: slide-in 100ms ease-in;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translate(50rem, 15rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate(20rem, 15rem);
+  }
+}

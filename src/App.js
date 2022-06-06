@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { authActions } from "./store/Auth";
 
 import Layout from "./components/UI/Layout";
 import LoginBox from "./components/login/LoginBox";
@@ -9,19 +11,22 @@ import "./App.css";
 function App() {
   const auth = useSelector((state) => state.auth);
   const { loggedIn, jwtToken, randomTruth } = auth;
-  console.log(auth);
-  console.log(jwtToken);
-  console.log('random truth is ... ' + randomTruth);
 
-  console.log('the moment of truth is ...  ' + loggedIn)
+  const dispatch = useDispatch();
 
-  // const burgerChoices = useSelector((state) => state.burger);
-  // const { cheese, numberOfPickles, mustard, ounces, shown } = burgerChoices;
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+  };
 
   return (
     <Layout>
-      {!auth.loggedIn && <LoginBox />}
-      {auth.loggedIn && <div>{auth.jwtToken}</div>}
+      {!loggedIn && <LoginBox />}
+      {loggedIn && (
+        <div>
+          {" "}
+          <button onClick={logoutHandler}>LOG OUT</button>
+        </div>
+      )}
     </Layout>
   );
 }

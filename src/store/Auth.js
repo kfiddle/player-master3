@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialLoggedState = {
-  randomTruth: true,
   loggedIn: false,
-  jwtToken: 'Fank the Tank',
+  jwtToken: null,
+  loggedInUser: null,
 };
 
 const authSlice = createSlice({
@@ -13,6 +13,7 @@ const authSlice = createSlice({
     login(state, action) {
       state.loggedIn = true;
       state.jwtToken = action.payload;
+      state.loggedInUser = action.payload.user;
     },
     logout(state) {
       state.loggedIn = false;
