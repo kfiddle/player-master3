@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { authActions } from "../../store/Auth";
 
 import styles from "./LoginBox.module.css";
 
 const LoginBox = () => {
   const [user, setUser] = useState({ username: "", password: "" });
+
+  const dispatch = useDispatch();
 
   const usernameHandler = (event) => {
     setUser({ ...user, username: event.target.value });
@@ -24,7 +29,7 @@ const LoginBox = () => {
 
     if (response.ok) {
       const jwtToken = response.headers.get("Authorization");
-      console.log(jwtToken);
+      dispatch(authActions.login(jwtToken));
     }
   };
 

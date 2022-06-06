@@ -1,18 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialLoggedState = {
-  isloggedIn: false,
+  randomTruth: true,
+  loggedIn: false,
+  jwtToken: 'Fank the Tank',
 };
 
 const authSlice = createSlice({
   name: "Auth",
   initialState: initialLoggedState,
   reducers: {
-    login(state) {
-      state.isloggedIn = true;
+    login(state, action) {
+      state.loggedIn = true;
+      state.jwtToken = action.payload;
     },
     logout(state) {
-      state.isloggedIn = false;
+      state.loggedIn = false;
+      state.jwtToken = '';
     },
   },
 });
