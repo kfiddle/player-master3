@@ -10,7 +10,7 @@ import "./App.css";
 
 function App() {
   const auth = useSelector((state) => state.auth);
-  const { loggedIn, jwtToken, randomTruth } = auth;
+  const { loggedIn, jwtToken, loggedInUser } = auth;
 
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ function App() {
       {loggedIn && (
         <div>
           {" "}
-          <button onClick={logoutHandler}>LOG OUT</button>
+          <button onClick={logoutHandler}>LOG OUT {loggedInUser.username}</button>
         </div>
       )}
     </Layout>

@@ -33,15 +33,8 @@ const LoginBox = () => {
 
     if (response.ok) {
       const jwtToken = response.headers.get("Authorization");
-      dispatch(authActions.login({ jwtToken }));
-
-      const loggedInUserResponse = await PushBasic(
-        user,
-        "get-player-by-username",
-        jwtToken
-      );
-      const loggedInUser = await loggedInUserResponse.json();
-      console.log(loggedInUser);
+      const player = await response.json();
+      dispatch(authActions.login({ jwtToken, player }));
     } else {
       setLoginFailed(true);
       setLoginMessage(failMsg);

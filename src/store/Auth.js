@@ -12,8 +12,8 @@ const authSlice = createSlice({
   reducers: {
     login(state, action) {
       state.loggedIn = true;
-      state.jwtToken = action.payload;
-      state.loggedInUser = action.payload.user;
+      state.jwtToken = action.payload.jwtToken;
+      state.loggedInUser = action.payload.player;
     },
     logout(state) {
       state.loggedIn = false;
