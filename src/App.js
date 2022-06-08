@@ -7,6 +7,7 @@ import Layout from "./components/UI/Layout";
 import LoginBox from "./components/login/LoginBox";
 
 import "./App.css";
+import PSA from "./components/psa/PSA";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -14,19 +15,10 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const logoutHandler = () => {
-    dispatch(authActions.logout());
-  };
-
   return (
     <Layout>
       {!loggedIn && <LoginBox />}
-      {loggedIn && (
-        <div>
-          {" "}
-          <button onClick={logoutHandler}>LOG OUT {loggedInUser.username}</button>
-        </div>
-      )}
+      {loggedIn && <PSA />}
     </Layout>
   );
 }
