@@ -17,7 +17,7 @@ const authSlice = createSlice({
     },
     logout(state) {
       state.loggedIn = false;
-      state.jwtToken = '';
+      state.jwtToken = null;
     },
   },
 });
