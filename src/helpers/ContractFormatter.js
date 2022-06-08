@@ -9,8 +9,8 @@ const ContractFormatter = (parts, rank) => {
     secondaryPart = parts[1];
   }
 
-  if (primaryPart === "Violin1" && rank === 1) {
-    return "ConcertMaster";
+  if (primaryPart === "First Violin" && rank === 1) {
+    return "Concertmaster";
   } else if (rank === 1) {
     return "Principal " + primaryPart;
   } else if (secondaryPart !== null) {

@@ -2,17 +2,20 @@
   width: 100%;
   height: 5.2rem;
   display: flex;
-  position: fixed;
-  top: 0;
-  padding: 2% 3%;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  padding: 5% 3%;
+
   /* background: rgb(123, 150, 199); */
 }
 
 .titleDiv {
-    padding-left: 2rem;
-    padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
 }
 
 .title {
@@ -22,6 +25,23 @@
   margin-right: 0;
   margin-left: 2rem;
   /* text-shadow: .5px .5px rgb(243, 237, 237); */
+}
+
+.iconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.logoutIcon {
+  color: rgb(155, 9, 9);
+  font-size: 3rem;
+}
+
+.logoutIcon:hover {
+  color: rgb(213, 4, 4);
 }
 
 .nav ul {

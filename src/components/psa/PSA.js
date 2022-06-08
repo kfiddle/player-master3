@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ContractFormatter from "../../helpers/ContractFormatter";
 
-
-
 import { authActions } from "../../store/Auth";
 
 import styles from "./PSA.module.css";
@@ -14,7 +12,6 @@ const PSA = () => {
   const primaryPart = parts[0];
 
   const contractedPart = ContractFormatter(parts, rank);
-
 
   const dispatch = useDispatch();
 
@@ -34,7 +31,6 @@ const PSA = () => {
       Philharmonic is currently able to offer you a total of X services at the
       position of {contractedPart}. You will be paid as per the Master
       Agreement, Article IV(b)
-      <button onClick={logoutHandler}>Log Oat </button>
     </div>
   );
 };
