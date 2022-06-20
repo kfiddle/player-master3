@@ -18,9 +18,8 @@ const PSA = () => {
 
   const dispatch = useDispatch();
 
-  const gigOffers = useGet("offers-by-player/" + id );
-  console.log(gigOffers)
-
+  const gigOffers = useGet("offers-by-player/" + id);
+ 
   const logoutHandler = () => {
     dispatch(authActions.logout());
   };
