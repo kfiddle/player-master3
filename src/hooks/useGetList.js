@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 import WhichServer from "../helpers/WhichServer";
 
-const useGet = (url) => {
-  const [data, setData] = useState(null);
+const useGetList = (url) => {
+  const [list, setList] = useState([]);
   const whichServer = WhichServer();
 
   const auth = useSelector((state) => state.auth);
@@ -21,7 +21,7 @@ const useGet = (url) => {
             headers: { Authorization: jwtToken },
           });
           let jsonified = await response.json();
-          setData(jsonified);
+          setList(jsonified);
         } catch (error) {
           return console.log(error);
         }
@@ -31,7 +31,7 @@ const useGet = (url) => {
     getData();
   }, [whichServer, url, jwtToken]);
 
-  return data;
+  return list;
 };
 
-export default useGet;
+export default useGetList;

@@ -4,9 +4,10 @@ import ContractFormatter from "../../helpers/ContractFormatter";
 
 import { authActions } from "../../store/Auth";
 
-import useGet from "../../hooks/useGet";
+import useGetList from "../../hooks/useGetList";
 
 import styles from "./PSA.module.css";
+import GigOffer from "./gigOffer/GigOffer";
 
 const PSA = () => {
   const auth = useSelector((state) => state.auth);
@@ -18,8 +19,12 @@ const PSA = () => {
 
   const dispatch = useDispatch();
 
-  const gigOffers = useGet("offers-by-player/" + id);
- 
+  const gigOffers = useGetList("offers-by-player/" + id);
+
+  const displayableOffers = gigOffers.map((gigOffer) => (
+    <GigOffer key={gigOffers.indexOf(gigOffer)} gigOffer={gigOffer} />
+  ));
+
   const logoutHandler = () => {
     dispatch(authActions.logout());
   };
@@ -36,6 +41,7 @@ const PSA = () => {
       Philharmonic is currently able to offer you a total of X services at the
       position of {contractedPart}. You will be paid as per the Master
       Agreement, Article IV(b)
+      <div>{displayableOffers}</div>
     </div>
   );
 };
