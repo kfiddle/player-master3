@@ -41,7 +41,7 @@ const PSA = () => {
       Philharmonic is currently able to offer you a total of X services at the
       position of {contractedPart}. You will be paid as per the Master
       Agreement, Article IV(b)
-      <div>{displayableOffers}</div>
+      <div className={styles.offersDiv}>{displayableOffers}</div>
     </div>
   );
 };
