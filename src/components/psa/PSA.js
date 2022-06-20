@@ -1,19 +1,25 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ContractFormatter from "../../helpers/ContractFormatter";
 
 import { authActions } from "../../store/Auth";
 
+import useGet from "../../hooks/useGet";
+
 import styles from "./PSA.module.css";
 
 const PSA = () => {
   const auth = useSelector((state) => state.auth);
-  const { loggedInUser } = auth;
-  const { firstNameArea, parts, rank } = loggedInUser;
+  const { loggedInPlayer } = auth;
+  const { firstNameArea, parts, rank, id } = loggedInPlayer;
   const primaryPart = parts[0];
 
   const contractedPart = ContractFormatter(parts, rank);
 
   const dispatch = useDispatch();
+
+  const gigOffers = useGet("offers-by-player/" + id );
+  console.log(gigOffers)
 
   const logoutHandler = () => {
     dispatch(authActions.logout());

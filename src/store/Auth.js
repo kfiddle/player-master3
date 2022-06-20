@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialLoggedState = {
   loggedIn: false,
   jwtToken: null,
-  loggedInUser: null,
+  loggedInPlayer: null,
 };
 
 const authSlice = createSlice({
@@ -13,11 +13,12 @@ const authSlice = createSlice({
     login(state, action) {
       state.loggedIn = true;
       state.jwtToken = action.payload.jwtToken;
-      state.loggedInUser = action.payload.player;
+      state.loggedInPlayer = action.payload.player;
     },
     logout(state) {
       state.loggedIn = false;
       state.jwtToken = null;
+      state.loggedInPlayer = null;
     },
   },
 });
