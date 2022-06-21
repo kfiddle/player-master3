@@ -7,7 +7,7 @@ import DeetsBox from "./deetsBox/DeetsBox";
 import styles from "./GigOffer.module.css";
 
 const GigOffer = (props) => {
-  const [dates, setDates] = useState();
+  const [services, setServices] = useState();
   const [clickedChoice, setClickedChoice] = useState();
   const [detailsClicked, setDetailsClicked] = useState(false);
 
@@ -21,8 +21,8 @@ const GigOffer = (props) => {
 
   useEffect(() => {
     const getTheDate = async () => {
-      const dates = await pusher(show, "get-full-schedule-of-show");
-      setDates(dates);
+      const services = await pusher(show, "get-full-schedule-of-show");
+      setServices(services);
     };
 
     getTheDate();
@@ -69,7 +69,7 @@ const GigOffer = (props) => {
           MAYBE
         </button>
       </div>
-      {detailsClicked && <DeetsBox dates={dates} />}
+      {detailsClicked && <DeetsBox services={services} />}
     </div>
   );
 };

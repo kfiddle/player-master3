@@ -1,15 +1,17 @@
+import Service from "./service/Service";
+
+
 import styles from "./DeetsBox.module.css";
 
 const DeetsBox = (props) => {
-  const dates = props.dates;
-  // date, startTime, EndTime, Event next to be destructured
-  console.log(dates);
+  const services = props.services;
+  console.log(services);
 
-  const displayableDates = dates.map((date) => (
-    <div key={dates.indexOf(date)}>date</div>
+  const displayableServices = services.map((service) => (
+    <Service key={services.indexOf(service)} service={service}/>
   ));
 
-  return <div>{displayableDates}</div>;
+  return <div>{displayableServices}</div>;
 };
 
 export default DeetsBox;
