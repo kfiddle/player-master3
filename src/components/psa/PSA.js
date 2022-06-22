@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ContractFormatter from "../../helpers/ContractFormatter";
 
@@ -10,10 +10,11 @@ import styles from "./PSA.module.css";
 import GigOffer from "./gigOffer/GigOffer";
 
 const PSA = () => {
+  const [submitClicked, setSubmitClicked] = useState(false);
+
   const auth = useSelector((state) => state.auth);
   const { loggedInPlayer } = auth;
   const { firstNameArea, parts, rank, id } = loggedInPlayer;
-  const primaryPart = parts[0];
 
   const contractedPart = ContractFormatter(parts, rank);
 
@@ -22,11 +23,15 @@ const PSA = () => {
   const gigOffers = useGetList("offers-by-player/" + id);
 
   const displayableOffers = gigOffers.map((gigOffer) => (
-    <GigOffer key={gigOffers.indexOf(gigOffer)} gigOffer={gigOffer} />
+    <GigOffer key={gigOffers.indexOf(gigOffer)} gigOffer={gigOffer} submitClicked={submitClicked} />
   ));
 
   const logoutHandler = () => {
     dispatch(authActions.logout());
+  };
+
+  const submitClicker = () => {
+    setSubmitClicked(true);
   };
 
   return (
@@ -43,7 +48,9 @@ const PSA = () => {
       Agreement, Article IV(b)
       <div className={styles.offersDiv}>{displayableOffers}</div>
       <div className={styles.submitDiv}>
-        <button className={styles.submitButton}>SUBMIT</button>
+        <button onClick={submitClicker} className={styles.submitButton}>
+          SUBMIT
+        </button>
       </div>
     </div>
   );

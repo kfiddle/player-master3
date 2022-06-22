@@ -12,6 +12,8 @@ const GigOffer = (props) => {
   const [detailsClicked, setDetailsClicked] = useState(false);
 
   const gigOffer = props.gigOffer;
+  const submitClicked = props.submitClicked;
+
   const { show } = gigOffer;
   const { title } = show;
 
@@ -22,9 +24,20 @@ const GigOffer = (props) => {
       const services = await pusher(show, "get-full-schedule-of-show");
       setServices(services);
     };
-
     getTheDate();
   }, []);
+
+  useEffect(() => {
+    const sendItUp = async () => {
+      const offerInReply = { ...gigOffer, reply: clickedChoice };
+      const response = await pusher(offerInReply, "gig-offer-reply");
+      console.log(response);
+    };
+
+    if (submitClicked) {
+      sendItUp();
+    }
+  }, [submitClicked]);
 
   const clickHandler = (choice) => {
     if (clickedChoice === choice) {
@@ -46,23 +59,23 @@ const GigOffer = (props) => {
         </div>
         <button
           className={
-            clickedChoice === "accept" ? styles.clicked : styles.button
+            clickedChoice === "ACCEPT" ? styles.clicked : styles.button
           }
-          onClick={() => clickHandler("accept")}
+          onClick={() => clickHandler("ACCEPT")}
         >
           ACCEPT
         </button>
         <button
           className={
-            clickedChoice === "decline" ? styles.clicked : styles.button
+            clickedChoice === "DECLINE" ? styles.clicked : styles.button
           }
-          onClick={() => clickHandler("decline")}
+          onClick={() => clickHandler("DECLINE")}
         >
           DECLINE
         </button>
         <button
-          className={clickedChoice === "maybe" ? styles.clicked : styles.button}
-          onClick={() => clickHandler("maybe")}
+          className={clickedChoice === "MAYBE" ? styles.clicked : styles.button}
+          onClick={() => clickHandler("MAYBE")}
         >
           MAYBE
         </button>

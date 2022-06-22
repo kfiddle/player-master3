@@ -2,10 +2,9 @@
 .mainPsaContainer {
     font-weight: 700;
     font-size: 1.25rem;
+    line-height: 2rem;
     color: rgb(229, 209, 209);
 }
-
-
 
 .offersDiv {
     margin-top: 3rem;
