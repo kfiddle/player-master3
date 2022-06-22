@@ -5,13 +5,12 @@ import styles from "./DeetsBox.module.css";
 
 const DeetsBox = (props) => {
   const services = props.services;
-  console.log(services);
 
   const displayableServices = services.map((service) => (
     <Service key={services.indexOf(service)} service={service}/>
   ));
 
-  return <div>{displayableServices}</div>;
+  return <div className={styles.outerContainer}>{displayableServices}</div>;
 };
 
 export default DeetsBox;

@@ -6,7 +6,7 @@ const useDateFormatter = (date) => {
   
       return `${month}/${day}/${year}`;
     }
-    return "no date";
+    return "";
   };
   
   export default useDateFormatter;

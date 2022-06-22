@@ -17,8 +17,6 @@ const GigOffer = (props) => {
 
   const pusher = usePost();
 
-  //   const displayableDate = useDateFormatter(primaryDate);
-
   useEffect(() => {
     const getTheDate = async () => {
       const services = await pusher(show, "get-full-schedule-of-show");

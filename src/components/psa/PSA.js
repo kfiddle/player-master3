@@ -30,7 +30,7 @@ const PSA = () => {
   };
 
   return (
-    <div>
+    <div className={styles.mainPsaContainer}>
       Dear {firstNameArea}, this form will serve as your Personal Service
       Agreement, (PSA). Below is a listing of all the services you are being
       offered by the Erie Philharmonic for the 2022-23 season, as of April 22,
@@ -42,6 +42,9 @@ const PSA = () => {
       position of {contractedPart}. You will be paid as per the Master
       Agreement, Article IV(b)
       <div className={styles.offersDiv}>{displayableOffers}</div>
+      <div className={styles.submitDiv}>
+        <button className={styles.submitButton}>SUBMIT</button>
+      </div>
     </div>
   );
 };
