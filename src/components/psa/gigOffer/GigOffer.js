@@ -29,7 +29,10 @@ const GigOffer = (props) => {
 
   useEffect(() => {
     const sendItUp = async () => {
-      const offerInReply = { ...gigOffer, reply: clickedChoice };
+      const offerInReply = {
+        ...gigOffer,
+        reply: !clickedChoice ? "MAYBE" : clickedChoice,
+      };
       const response = await pusher(offerInReply, "gig-offer-reply");
       console.log(response);
     };
