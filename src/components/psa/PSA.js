@@ -38,10 +38,12 @@ const PSA = () => {
   };
 
   const submitClicker = async () => {
-    console.log(responsesRef);
-    // const gigOffersToSendBack = gigOffers.map((offer) => {
-    //   return { ...offer, reply: "ACCEPT" };
+    const gigOffersToSendBack = gigOffers.map((offer, index) => {
+      return { ...offer, reply: responsesRef.current[index] };
+    });
+    console.log(gigOffersToSendBack);
 
+    console.log(responsesRef);
     // const response = await pusher(gigOffersToSendBack, "gig-offer-replies");
     // console.log(response);
   };
