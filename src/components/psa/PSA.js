@@ -1,37 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ContractFormatter from "../../helpers/ContractFormatter";
 
 import { authActions } from "../../store/Auth";
 
 import useGetList from "../../hooks/useGetList";
+import usePost from "../../hooks/usePost";
 
 import styles from "./PSA.module.css";
 import GigOffer from "./gigOffer/GigOffer";
 
 const PSA = () => {
-  const [submitClicked, setSubmitClicked] = useState(false);
-
   const auth = useSelector((state) => state.auth);
-  const { loggedInPlayer } = auth;
-  const { firstNameArea, parts, rank, id } = loggedInPlayer;
+  const {
+    loggedInPlayer: { firstNameArea, instruments, rank, id },
+  } = auth;
 
-  const contractedPart = ContractFormatter(parts, rank);
+  const contractedPart = ContractFormatter(instruments, rank);
 
   const dispatch = useDispatch();
+  const pusher = usePost();
+  const responsesRef = useRef({});
 
   const gigOffers = useGetList("offers-by-player/" + id);
 
-  const displayableOffers = gigOffers.map((gigOffer) => (
-    <GigOffer key={gigOffers.indexOf(gigOffer)} gigOffer={gigOffer} submitClicked={submitClicked} />
+  const displayableOffers = gigOffers.map((gigOffer, index) => (
+    <GigOffer
+      key={gigOffers.indexOf(gigOffer)}
+      gigOffer={gigOffer}
+      index={index}
+      responsesRef={responsesRef}
+    />
   ));
 
   const logoutHandler = () => {
     dispatch(authActions.logout());
   };
 
-  const submitClicker = () => {
-    setSubmitClicked(true);
+  const submitClicker = async () => {
+    console.log(responsesRef);
+    // const gigOffersToSendBack = gigOffers.map((offer) => {
+    //   return { ...offer, reply: "ACCEPT" };
+
+    // const response = await pusher(gigOffersToSendBack, "gig-offer-replies");
+    // console.log(response);
   };
 
   return (

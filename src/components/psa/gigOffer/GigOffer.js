@@ -6,13 +6,10 @@ import DeetsBox from "./deetsBox/DeetsBox";
 
 import styles from "./GigOffer.module.css";
 
-const GigOffer = (props) => {
+const GigOffer = ({ gigOffer, index, responsesRef }) => {
   const [services, setServices] = useState();
   const [clickedChoice, setClickedChoice] = useState();
   const [detailsClicked, setDetailsClicked] = useState(false);
-
-  const gigOffer = props.gigOffer;
-  const submitClicked = props.submitClicked;
 
   const { show } = gigOffer;
   const { title } = show;
@@ -27,20 +24,29 @@ const GigOffer = (props) => {
     getTheDate();
   }, []);
 
-  useEffect(() => {
-    const sendItUp = async () => {
-      const offerInReply = {
-        ...gigOffer,
-        reply: !clickedChoice ? "MAYBE" : clickedChoice,
-      };
-      const response = await pusher(offerInReply, "gig-offer-reply");
-      console.log(response);
-    };
+  // useEffect(() => {
+  //   const sendItUp = async () => {
+  //     const offerInReply = {
+  //       ...gigOffer,
+  //       reply: !clickedChoice ? "MAYBE" : clickedChoice,
+  //     };
+  //     const response = await pusher(offerInReply, "gig-offer-reply");
+  //     console.log(response);
+  //   };
 
-    if (submitClicked) {
-      sendItUp();
+  //   if (submitClicked) {
+  //     sendItUp();
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    if (clickedChoice) {
+      responsesRef.current = {
+        ...responsesRef.current,
+        [index]: clickedChoice,
+      };
     }
-  }, [submitClicked]);
+  }, [clickedChoice]);
 
   const clickHandler = (choice) => {
     if (clickedChoice === choice) {
