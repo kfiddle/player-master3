@@ -44,8 +44,8 @@ const PSA = () => {
     console.log(gigOffersToSendBack);
 
     console.log(responsesRef);
-    // const response = await pusher(gigOffersToSendBack, "gig-offer-replies");
-    // console.log(response);
+    const response = await pusher(gigOffersToSendBack, "gig-offer-replies");
+    console.log(response);
   };
 
   return (

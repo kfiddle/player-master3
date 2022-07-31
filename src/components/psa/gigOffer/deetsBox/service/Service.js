@@ -3,11 +3,10 @@ import useTimeFormatter from "../../../../../hooks/useTimeFormatter";
 
 import styles from "./Service.module.css";
 
-const Service = (props) => {
-  const { date, startTime, endTime, event, location } = props.service;
-  console.log(props.service);
-
-  const printedEvent = event === 'REHEARSAL'? 'rehearsal' : 'concert';
+const Service = ({
+  service: { date, startTime, endTime, event, location },
+}) => {
+  const printedEvent = event === "REHEARSAL" ? "rehearsal" : "concert";
 
   const printedDate = useDateFormatter(date);
   const start = useTimeFormatter(startTime);
